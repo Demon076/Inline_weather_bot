@@ -8,28 +8,9 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.filters.callback_data import CallbackData
 
 from app.database.user.models import User
+from app.keyboards.capcha import CapchaCallbackFactory, capcha_keyboard
 
 router = Router()
-
-
-class CapchaCallbackFactory(CallbackData, prefix="fab_capcha"):
-    answer: int
-    right: bool
-
-
-def capcha_keyboard(answers: List[int], right_answer: int) -> InlineKeyboardMarkup:
-    builder = InlineKeyboardBuilder()
-
-    for answer in answers:
-        right = False
-        if answer == right_answer:
-            right = True
-        builder.button(
-            text=f'{answer}',
-            callback_data=CapchaCallbackFactory(answer=answer, right=right)
-        )
-
-    return builder.as_markup()
 
 
 @router.message(Command("capcha"))
@@ -65,4 +46,3 @@ async def current_weather_call(
         await capcha_cmd(callback.message)
 
     await callback.message.delete()
-
