@@ -1,0 +1,123 @@
+{
+    "\u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433": {
+        "id": 57,
+        "name_en": "Saint Petersburg",
+        "name_ru": "\u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433",
+        "lat": 59.938732,
+        "lon": 30.316229,
+        "time_zone": 0,
+        "country_code": "RU",
+        "state_code": "Saint Petersburg",
+        "local_names": null
+    },
+    "\u0410\u043d\u0430\u043f\u0430": {
+        "id": 58,
+        "name_en": "Anapa",
+        "name_ru": "\u0410\u043d\u0430\u043f\u0430",
+        "lat": 44.894272,
+        "lon": 37.316887,
+        "time_zone": 0,
+        "country_code": "RU",
+        "state_code": "Krasnodar Krai",
+        "local_names": null
+    },
+    "\u041c\u043e\u0436\u0430\u0439\u0441\u043a": {
+        "id": 59,
+        "name_en": "Mozhaisk",
+        "name_ru": "\u041c\u043e\u0436\u0430\u0439\u0441\u043a",
+        "lat": 55.506478,
+        "lon": 36.0213092,
+        "time_zone": 0,
+        "country_code": "RU",
+        "state_code": "Moscow Oblast",
+        "local_names": null
+    },
+    "\u0420\u043e\u0441\u0442\u043e\u0432-\u043d\u0430-\u0414\u043e\u043d\u0443": {
+        "id": 60,
+        "name_en": "Rostov-on-Don",
+        "name_ru": "\u0420\u043e\u0441\u0442\u043e\u0432-\u043d\u0430-\u0414\u043e\u043d\u0443",
+        "lat": 47.2213858,
+        "lon": 39.7114196,
+        "time_zone": 0,
+        "country_code": "RU",
+        "state_code": "Rostov Oblast",
+        "local_names": null
+    },
+    "\u0410\u0440\u0445\u0430\u043d\u0433\u0435\u043b\u044c\u0441\u043a": {
+        "id": 61,
+        "name_en": "Arkhangelsk",
+        "name_ru": "\u0410\u0440\u0445\u0430\u043d\u0433\u0435\u043b\u044c\u0441\u043a",
+        "lat": 64.543022,
+        "lon": 40.537121,
+        "time_zone": 0,
+        "country_code": "RU",
+        "state_code": "Arkhangelsk Oblast",
+        "local_names": null
+    },
+    "\u041c\u043e\u0441\u043a\u0432\u0430": {
+        "id": 62,
+        "name_en": "Moscow",
+        "name_ru": "\u041c\u043e\u0441\u043a\u0432\u0430",
+        "lat": 55.7504461,
+        "lon": 37.6174943,
+        "time_zone": 0,
+        "country_code": "RU",
+        "state_code": "Moscow",
+        "local_names": null
+    },
+    "\u0420\u044f\u0437\u0430\u043d\u044c": {
+        "id": 63,
+        "name_en": "Ryazan",
+        "name_ru": "\u0420\u044f\u0437\u0430\u043d\u044c",
+        "lat": 54.6295687,
+        "lon": 39.7425039,
+        "time_zone": 0,
+        "country_code": "RU",
+        "state_code": "Ryazan Oblast",
+        "local_names": null
+    },
+    "\u0412\u043b\u0430\u0434\u0438\u0432\u043e\u0441\u0442\u043e\u043a": {
+        "id": 64,
+        "name_en": "Vladivostok",
+        "name_ru": "\u0412\u043b\u0430\u0434\u0438\u0432\u043e\u0441\u0442\u043e\u043a",
+        "lat": 43.1150678,
+        "lon": 131.8855768,
+        "time_zone": 10,
+        "country_code": "RU",
+        "state_code": "Primorsky Krai",
+        "local_names": null
+    },
+    "\u041d\u043e\u0432\u043e\u0441\u0438\u0431\u0438\u0440\u0441\u043a": {
+        "id": 65,
+        "name_en": "Novosibirsk",
+        "name_ru": "\u041d\u043e\u0432\u043e\u0441\u0438\u0431\u0438\u0440\u0441\u043a",
+        "lat": 55.0282171,
+        "lon": 82.9234509,
+        "time_zone": 7,
+        "country_code": "RU",
+        "state_code": "Novosibirsk Oblast",
+        "local_names": null
+    },
+    "\u0433\u043e\u0440\u043e\u0434 \u041d\u0430\u0431\u0435\u0440\u0435\u0436\u043d\u044b\u0435 \u0427\u0435\u043b\u043d\u044b": {
+        "id": 66,
+        "name_en": "Naberezhnye Chelny",
+        "name_ru": "\u0433\u043e\u0440\u043e\u0434 \u041d\u0430\u0431\u0435\u0440\u0435\u0436\u043d\u044b\u0435 \u0427\u0435\u043b\u043d\u044b",
+        "lat": 55.7419774,
+        "lon": 52.399207,
+        "time_zone": 3,
+        "country_code": "RU",
+        "state_code": "Tatarstan",
+        "local_names": null
+    },
+    "\u042f\u0440\u043e\u0441\u043b\u0430\u0432\u043b\u044c": {
+        "id": 68,
+        "name_en": "Yaroslavl",
+        "name_ru": "\u042f\u0440\u043e\u0441\u043b\u0430\u0432\u043b\u044c",
+        "lat": 57.6263877,
+        "lon": 39.8933705,
+        "time_zone": 3,
+        "country_code": "RU",
+        "state_code": "Yaroslavl Oblast",
+        "local_names": null
+    }
+}
