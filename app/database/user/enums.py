@@ -36,7 +36,7 @@ class ZodiacSign(Enum):
         return ZodiacSignHelp.russian_name(self)
 
 
-class ZodiacSignHelp:
+class ZodiacSignHelp: # TODO: Сделать подклассом енума
     _zodiac_rus_names: Dict[str, str] = {
         "Aries": "овен",
         "Taurus": "телец",

@@ -3,7 +3,7 @@ from aiogram import Dispatcher
 from app.bot.bot_info import bot_info
 from app.handlers import base, capcha
 from app.handlers.admin import admin_router
-from app.handlers.exp import donate, sch, premium, webapp
+from app.handlers.exp import donate, sch, premium, webapp, keys
 from app.handlers.weather import weather_router
 from app.middlewares.bot_info.LogMiddleware import LogMiddleware
 from app.middlewares.bot_info.NewUserMiddleware import NewUserMiddleware
@@ -30,6 +30,7 @@ def registration_dispatcher(dispatcher: Dispatcher) -> None:
         donate.router,
         sch.router,
         premium.router,
-        webapp.router
+        webapp.router,
+        keys.router
     )
 

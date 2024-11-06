@@ -9,6 +9,7 @@ class BotSettings(BaseSettings):
     ADMIN_BOT_LOG: int
     APIKEY_WEATHERAPI: str
 
+    REDIS_PASSWORD: str
 
 bot_settings = BotSettings()
 
