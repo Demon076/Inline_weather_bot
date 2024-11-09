@@ -89,7 +89,7 @@ async def forget_location_call(
     if user.sending_weather is False:
         await callback.message.answer(f'Заданная геолокация удалена!')
     else:
-        user.stop_send_weather()
+        await user.stop_send_weather()
         await callback.message.answer(f'Заданная геолокация удалена!\n'
                                       f'Рассылка погоды выключена!!')
 

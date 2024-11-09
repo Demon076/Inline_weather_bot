@@ -1,12 +1,11 @@
 from dataclasses import dataclass
-from datetime import datetime, timedelta, timezone
-from enum import Enum
-from typing import Tuple, List, Dict
+from datetime import timedelta
+from typing import Tuple, List
 from aiogram.types import User as Telegram_User
 
-from app.bot.scheduler import scheduler
+from app.database.core.arq_redis import ArqRedisConnection
 from app.database.user.enums import ZodiacSign
-from app.database.user.services import send_weather
+
 
 users: List['User'] = []
 
@@ -61,22 +60,19 @@ class User:
         time = timedelta(seconds=time.seconds)  # TODO: Переделать работу со временем
         return time
 
-    def start_send_weather(self):
-        scheduler.add_job(
-            func=send_weather,
-            trigger='cron',
-            hour=self.hours,
-            minute=self.minutes,
-            start_date=datetime.now(timezone.utc),
-            id=f'scheduler_{self.id}',
-            kwargs={
-                'user': self
-            }
+    async def start_send_weather(self):
+        await ArqRedisConnection.arq_redis.enqueue_job(
+            function="start_send_weather",
+            user=self
         )
         self.sending_weather = True
 
-    def stop_send_weather(self):
-        scheduler.remove_job(job_id=f'scheduler_{self.id}')
+    # TODO: Добавить дополнительные проверки успешного завершения задачи
+    async def stop_send_weather(self):
+        await ArqRedisConnection.arq_redis.enqueue_job(
+            function="stop_send_weather",
+            user=self
+        )
         self.sending_weather = False
 
 

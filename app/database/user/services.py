@@ -5,6 +5,7 @@ from aiogram.types import WebAppInfo
 from app.services.weather.api_weatherapi.get_weather_by_coordinates import get_weather_by_coordinates
 
 
+# TODO: Переделать, чтобы был запрос пользователя!!
 async def send_weather(user: 'User'):
     from app.database.user.models import User
     user: User

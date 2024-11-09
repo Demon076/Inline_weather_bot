@@ -8,8 +8,6 @@ bot = Bot(token=bot_settings.TOKEN)
 bot_title = None
 
 
-# 6661684613:AAHD310i858LnVi3yfJ4Gi6LlCLnY-fiICw
-
 async def bot_setup(aiogram_bot: Bot) -> None:
     await aiogram_bot.set_my_commands(
         commands=[

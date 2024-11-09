@@ -26,7 +26,7 @@ async def sending_weather_turn_on_call(
 ):
     user = User.get_by_id_or_create(callback.from_user)
     if user.location is not None and user.time_is_set():
-        user.start_send_weather()
+        await user.start_send_weather()
         await sending_weather_menu_call(callback)
     else:
         await callback.message.edit_text(text=f'Время и геопозиция не заданы, чтобы включить отправку по времени!',
@@ -41,6 +41,6 @@ async def sending_weather_turn_off_call(
         callback_data: SendingWeatherMenuCallbackFactory
 ):
     user = User.get_by_id_or_create(callback.from_user)
-    user.stop_send_weather()
+    await user.stop_send_weather()
     await sending_weather_menu_call(callback)
     await callback.answer()
