@@ -18,6 +18,12 @@ arq = "^0.26.1"
 orjson = "^3.10.11"
 
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.7.3"
+mypy = "^1.13.0"
+pylint = "^3.3.1"
+perflint = "^0.8.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
