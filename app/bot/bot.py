@@ -13,6 +13,7 @@ async def bot_setup(aiogram_bot: Bot) -> None:
         commands=[
             BotCommand(command="start", description="Запуск бота"),
             BotCommand(command="menu", description="Дополнительный функционал бота"),
+            BotCommand(command="donate", description="Задонатить на развитие бота"),
             BotCommand(command="help", description="Полезная информация о боте")
         ]
     )

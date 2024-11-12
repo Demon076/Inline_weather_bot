@@ -8,7 +8,7 @@ router = Router()
 router.message.filter(F.chat.type == "private")
 
 
-@router.message(Command("donate", "donat", "донат"))
+@router.message(Command("donate_", "donat_", "донат"))
 async def cmd_donate(message: Message, command: CommandObject):
     if command.args is None or not command.args.isdigit() or not 1 <= int(command.args) <= 2500:
         await message.answer("Вы не ввели количество звёзд для доната")
