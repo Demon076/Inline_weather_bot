@@ -17,7 +17,7 @@ def json_to_weather(weather_json: dict) -> 'Weather':
     return weather
 
 
-async def get_weather_by_coordinates(latitude: float, longitude: float) -> Weather:
+async def get_weather_coordinates(latitude: float, longitude: float) -> Weather:
     coordinates = f'{latitude}, {longitude}'
 
     client_session = ClientSession()

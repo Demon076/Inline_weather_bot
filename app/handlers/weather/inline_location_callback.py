@@ -4,7 +4,7 @@ from aiogram.types import CallbackQuery
 
 from app.database.user.models import User
 from app.keyboards.inline import WeatherCallbackFactory
-from app.services.weather.api_weatherapi.get_weather_by_coordinates import get_weather_by_coordinates
+from app.services.weather.api.get_current_weather_by_coordinates import get_weather_by_coordinates
 
 router = Router()
 

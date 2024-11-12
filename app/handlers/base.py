@@ -20,19 +20,17 @@ async def start_cmd(message: types.Message):
 
 
 @router.message(Command("menu"))
-async def menu_cmd(message: types.Message):
-    user = User.get_by_id_or_create(message.from_user)
+async def menu_cmd(message: types.Message, bot_user: User):
     await message.answer(text=f'Это моё меню, тут ты можешь воспользоваться дополнительными функциями ^_^',
-                         reply_markup=menu_keyboard(user)
+                         reply_markup=menu_keyboard(bot_user)
                          )
 
 
 @router.callback_query(F.data == "menu")
 # TODO: Возможно сделать как-то более нормально работу с коллбеком. Сейчас нужен для возвращения.
-async def menu_callback(callback: types.CallbackQuery):
-    user = User.get_by_id_or_create(callback.from_user)
+async def menu_callback(callback: types.CallbackQuery, bot_user: User):
     await callback.message.edit_text(text=f'Это моё меню, тут ты можешь воспользоваться дополнительными функциями ^_^',
-                                     reply_markup=menu_keyboard(user)
+                                     reply_markup=menu_keyboard(bot_user)
                                      )
 
 

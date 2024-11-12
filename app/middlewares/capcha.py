@@ -4,6 +4,7 @@ from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, Update, Message, InlineQuery, CallbackQuery
 
 from app.database.user.models import User
+from app.handlers.base import start_cmd
 from app.handlers.capcha import capcha_cmd
 
 
@@ -16,6 +17,10 @@ class CapchaMiddleware(BaseMiddleware):
             message: Message,
             data: Dict[str, Any]
     ) -> Any:
-        if not User.user_exists(message.from_user.id):
-            return await capcha_cmd(message)
-        return await handler(message, data)
+        bot_user: User = data['bot_user']
+        if bot_user.captcha_passed:
+            return await handler(message, data)
+        if message.text == "/start":
+            await start_cmd(message)
+
+        return await capcha_cmd(message)

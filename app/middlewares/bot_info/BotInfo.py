@@ -27,6 +27,6 @@ class BotInfo:
 
     def set_bot_title(self, bot: Bot):
         bot_user = asyncio.run(bot.me())
-        asyncio.run(bot.session.close())
+        asyncio.run(bot.session.close())  # TODO: ПЕРЕДЕЛАТЬ!!!!
         self.__bot_title = (f'#{bot_user.username}\n'
                             f'Bot @{bot_user.username} id={bot.id} - {bot_user.full_name}')

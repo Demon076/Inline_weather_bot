@@ -2,7 +2,6 @@ import emoji
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
 
-
 from app.database.user.models import User
 
 from app.handlers.weather.sending_weather.menu import sending_weather_menu_call
@@ -22,12 +21,12 @@ router = Router()
 @router.callback_query(SendingWeatherMenuCallbackFactory.filter(F.action == "turn_on"))
 async def sending_weather_turn_on_call(
         callback: CallbackQuery,
-        callback_data: SendingWeatherMenuCallbackFactory
+        callback_data: SendingWeatherMenuCallbackFactory,
+        bot_user: User
 ):
-    user = User.get_by_id_or_create(callback.from_user)
-    if user.location is not None and user.time_is_set():
-        await user.start_send_weather()
-        await sending_weather_menu_call(callback)
+    if bot_user.location is not None and bot_user.time_is_set():
+        await bot_user.start_send_weather()
+        await sending_weather_menu_call(callback, bot_user)
     else:
         await callback.message.edit_text(text=f'Время и геопозиция не заданы, чтобы включить отправку по времени!',
                                          reply_markup=return_keyboard())
@@ -38,9 +37,9 @@ async def sending_weather_turn_on_call(
 @router.callback_query(SendingWeatherMenuCallbackFactory.filter(F.action == "turn_off"))
 async def sending_weather_turn_off_call(
         callback: CallbackQuery,
-        callback_data: SendingWeatherMenuCallbackFactory
+        callback_data: SendingWeatherMenuCallbackFactory,
+        bot_user: User
 ):
-    user = User.get_by_id_or_create(callback.from_user)
-    await user.stop_send_weather()
-    await sending_weather_menu_call(callback)
+    await bot_user.stop_send_weather()
+    await sending_weather_menu_call(callback, bot_user)
     await callback.answer()

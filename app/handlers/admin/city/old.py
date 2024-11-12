@@ -1,7 +1,7 @@
 from aiogram import types, Router
 from aiogram.filters import Command, CommandObject
 
-from app.services.weather.api.get_city import get_city
+from app.services.weather.api_openweathermap.get_city import get_city
 from app.services.weather.city import City
 
 router = Router()

@@ -7,8 +7,9 @@ from aiogram.types import CallbackQuery
 from app.bot.bot import bot
 from app.keyboards.inline import WeatherCallbackFactory
 from app.services.weather.Weather import Weather
-from app.services.weather.api.get_weather import get_weather_coordinates
-from app.services.weather.api.get_weather_future import get_weather_future
+from app.services.weather.api.get_future_weather_city import get_future_weather_city
+from app.services.weather.api.get_weather_city import get_weather_city
+
 from app.services.weather.data import Cities
 
 router = Router()
@@ -20,7 +21,7 @@ async def current_weather_call(
         callback_data: WeatherCallbackFactory
 ):
     city = Cities.dict_cities_id[callback_data.city_id]
-    weather = await get_weather_coordinates(lat=city.lat, lon=city.lon)
+    weather = await get_weather_city(city)
     await bot.edit_message_text(
         inline_message_id=callback.inline_message_id,
         text=f'*{city.name_ru}*\n\n'
@@ -35,7 +36,7 @@ async def future_weather_hour_call(
         callback_data: WeatherCallbackFactory
 ):
     city = Cities.dict_cities_id[callback_data.city_id]
-    future_weather = await get_weather_future(lat=city.lat, lon=city.lon)
+    future_weather = await get_future_weather_city(city)
     await bot.edit_message_text(
         inline_message_id=callback.inline_message_id,
         text=f'*{city.name_ru}*\n\n'
@@ -50,7 +51,7 @@ async def future_weather_day_call(
         callback_data: WeatherCallbackFactory
 ):
     city = Cities.dict_cities_id[callback_data.city_id]
-    future_weather = await get_weather_future(lat=city.lat, lon=city.lon)
+    future_weather = await get_future_weather_city(city)
     await bot.edit_message_text(
         inline_message_id=callback.inline_message_id,
         text=f'*{city.name_ru}*\n\n'

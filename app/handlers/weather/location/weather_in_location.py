@@ -5,7 +5,7 @@ from aiogram.fsm.context import FSMContext
 
 from app.keyboards.base import MenuCallbackFactory
 from app.keyboards.location import LocationCallbackFactory
-from app.services.weather.api_weatherapi.get_weather_by_coordinates import get_weather_by_coordinates
+from app.services.weather.api.get_current_weather_by_coordinates import get_weather_by_coordinates
 from aiogram.fsm.state import StatesGroup, State
 
 

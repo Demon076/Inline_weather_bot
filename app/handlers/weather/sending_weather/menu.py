@@ -32,21 +32,21 @@ def text_sending_weather_menu(user: User):
 
 @router.callback_query(MenuCallbackFactory.filter(F.action == "sending_weather"))
 async def sending_weather_menu_call(
-        callback: CallbackQuery
+        callback: CallbackQuery,
+        bot_user: User
 ):
-    user = User.get_by_id_or_create(callback.from_user)
     await callback.message.edit_text(
-        text=text_sending_weather_menu(user),
-        reply_markup=menu_keyboard(user=user)
+        text=text_sending_weather_menu(bot_user),
+        reply_markup=menu_keyboard(user=bot_user)
     )
     await callback.answer()
 
 
 async def sending_weather_menu_message(
-        message: Message
+        message: Message,
+        bot_user: User
 ):
-    user = User.get_by_id_or_create(message.from_user)
     await message.answer(
-        text=text_sending_weather_menu(user),
-        reply_markup=menu_keyboard(user=user)
+        text=text_sending_weather_menu(bot_user),
+        reply_markup=menu_keyboard(user=bot_user)
     )

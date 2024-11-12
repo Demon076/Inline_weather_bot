@@ -49,13 +49,14 @@ async def sending_weather_time_call(
 @router.message(TimeRememberState.send_timezone)
 async def location_handler(
         message: types.Message,
-        state: FSMContext
+        state: FSMContext,
+        bot_user: User
 ):
     if (message.text is not None
             and message.text.isdigit()
             and -12 <= int(message.text) <= 12):
-        user = User.get_by_id_or_create(message.from_user)
-        user.timezone = int(message.text)
+        bot_user.timezone = int(message.text)
+        await bot_user.save()
         await message.answer(text=f'Теперь отправьте время в которое отправлять рассылку в формате 24 часа'
                                   f' HH:MM')
         await state.set_state(TimeRememberState.send_scheduled_dispatch_time)
@@ -67,19 +68,20 @@ async def location_handler(
 @router.message(TimeRememberState.send_scheduled_dispatch_time)
 async def location_handler(
         message: types.Message,
-        state: FSMContext
+        state: FSMContext,
+        bot_user: User
 ):
     if message.text is not None and time_validation(message.text):
-        user = User.get_by_id_or_create(message.from_user)
         time = message.text.split(":")
-        user.hours = int(time[0]) - user.timezone
-        if user.hours > 24:
-            user.hours -= 24
-        elif user.hours < 0:
-            user.hours += 24  # TODO: Переделать эту логику
-        user.minutes = int(time[1])
+        bot_user.hours = int(time[0]) - bot_user.timezone
+        if bot_user.hours > 24:
+            bot_user.hours -= 24
+        elif bot_user.hours < 0:
+            bot_user.hours += 24  # TODO: Переделать эту логику
+        bot_user.minutes = int(time[1])
+        await bot_user.save()
         await message.answer(text=f'Отлично время запомнено!')
-        await sending_weather_menu_message(message)
+        await sending_weather_menu_message(message, bot_user)
     else:
         await message.answer(text=f'Вы не отправили верные данные, чтобы попробовать снова нажмите кнопку меню!!')
 
@@ -89,18 +91,19 @@ async def location_handler(
 @router.callback_query(SendingWeatherMenuCallbackFactory.filter(F.action == "forget_time"))
 async def forget_location_call(
         callback: CallbackQuery,
-        callback_data: SendingWeatherMenuCallbackFactory
+        callback_data: SendingWeatherMenuCallbackFactory,
+        bot_user: User
 ):
-    user = User.get_by_id_or_create(callback.from_user)
-    user.timezone = 0  # TODO: Переделать обнуление
-    user.hours = None
-    user.minutes = None
+    bot_user.timezone = 0  # TODO: Переделать обнуление
+    bot_user.hours = None
+    bot_user.minutes = None
 
-    if user.sending_weather is False:
+    if bot_user.sending_weather is False:
         await callback.message.answer(f'Заданное время удалено!')
     else:
-        await user.stop_send_weather()
+        await bot_user.stop_send_weather()
         await callback.message.answer(f'Заданное время удалено!\n'
                                       f'Рассылка погоды выключена!!')
-    await sending_weather_menu_call(callback)
+    await bot_user.save()
+    await sending_weather_menu_call(callback, bot_user)
     await callback.answer()

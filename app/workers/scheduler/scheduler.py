@@ -21,3 +21,6 @@ def setup_scheduler() -> AsyncIOScheduler:
         jobstores=jobstores
     )
     return scheduler
+
+
+global_scheduler = setup_scheduler()

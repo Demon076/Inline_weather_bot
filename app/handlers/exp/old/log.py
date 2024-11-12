@@ -6,7 +6,7 @@ import logging
 import aiofiles
 
 from app.services.profiling.time import async_timeit
-from app.services.weather.api.get_weather import get_weather
+from app.services.weather.api_openweathermap.get_weather import get_weather
 
 
 def start_logging():

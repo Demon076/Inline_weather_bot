@@ -2,7 +2,7 @@ from aiohttp import ClientSession
 
 from app.bot.settings import bot_settings
 from app.services.weather.Weather import Weather
-from app.services.weather.api import RateLimiter
+from app.services.weather.api_openweathermap.rate_limiter import RateLimiter
 
 
 async def get_weather(city: str) -> Weather:
