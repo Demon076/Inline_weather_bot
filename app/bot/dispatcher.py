@@ -7,7 +7,6 @@ from app.database.core.redis import redis_conn
 from app.handlers import base, capcha
 from app.handlers.admin import admin_router
 from app.handlers.donate import donate_router
-from app.handlers.exp import donate, premium, webapp, keys
 from app.handlers.weather import weather_router
 from app.middlewares.bot_info.LogMiddleware import LogMiddleware
 from app.middlewares.NewUserMiddleware import NewUserMiddleware
@@ -32,16 +31,11 @@ def registration_dispatcher(dispatcher: Dispatcher) -> None:
         clean_log=True,
         limit_counter=30
     ))
-    # dispatcher.message.outer_middleware(CapchaMiddleware())
     dispatcher.include_routers(
         admin_router(),
         base.router,
         weather_router(),
         donate_router(),
         capcha.router,
-        donate.router,
-        premium.router,
-        webapp.router,
-        keys.router
     )
 

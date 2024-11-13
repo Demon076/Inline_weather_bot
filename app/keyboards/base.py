@@ -20,6 +20,22 @@ def base_kb() -> InlineKeyboardMarkup:
         ]])
 
 
+def help_kb() -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup(
+        inline_keyboard=[[
+            InlineKeyboardButton(
+                text="Открыть инлайн режим бота",
+                switch_inline_query_current_chat=""
+            )],
+            [InlineKeyboardButton(
+                text="Бот жалоб и предложений",
+                url="https://t.me/help_inline_weather_bot"
+            )]
+        ])
+
+
+# TODO: Убрать из кода url
+
 def menu_keyboard(user: User) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
     builder.button(
@@ -31,8 +47,8 @@ def menu_keyboard(user: User) -> InlineKeyboardMarkup:
         callback_data=MenuCallbackFactory(action="location_weather")
     )
     builder.button(
-            text="Местоположение",
-            callback_data=MenuCallbackFactory(action="location")
+        text="Местоположение",
+        callback_data=MenuCallbackFactory(action="location")
     )
     builder.button(
         text="Настроить рассылку погоды",

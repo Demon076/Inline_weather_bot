@@ -1,22 +1,27 @@
-import emoji
-
 from aiogram import Router, types
 from aiogram.filters import Command
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram import Router, F, Bot
+from aiogram.exceptions import TelegramBadRequest
+from aiogram.filters import Command, CommandObject
+from aiogram.types import Message, LabeledPrice, PreCheckoutQuery, CallbackQuery
+from app.keyboards.donate import donate_keyboard
 
 router = Router()
-
-def donate_keyboard() -> InlineKeyboardMarkup:
-    return InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(
-            text=f'Задонатить через CWallet {emoji.emojize("💰")}',
-            url=f'https://cwallet.com/t/HIYA6RJ1'
-        )
-    ]])
 
 
 @router.message(Command("donate"))
 async def donate_cmd(message: types.Message):
-    await message.answer(text=f'При желании можно задонатить нажав на кнопки ниже ^_^',
-                         reply_markup=donate_keyboard()
-                         )
+    prices = [LabeledPrice(label="XTR", amount=1)]
+    await message.answer_invoice(
+        title=f'Донатик ^_^',
+        description=f'При желании можно задонатить нажав на кнопки ниже:',
+        prices=prices,
+
+        provider_token="",
+
+        payload=f"1_stars",
+
+        currency="XTR",
+
+        reply_markup=donate_keyboard()
+    )

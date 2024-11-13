@@ -5,6 +5,7 @@ from app.services.weather.FutureWeather import FutureWeather
 from app.services.weather.api_openweathermap.rate_limiter import RateLimiter
 
 
+# TODO: Добавить кэширование запросов 
 async def get_weather_future(lat: float, lon: float) -> FutureWeather:
     await RateLimiter.request_api()
     client_session = ClientSession()

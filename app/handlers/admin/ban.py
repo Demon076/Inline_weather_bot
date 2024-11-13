@@ -1,4 +1,3 @@
-import aiogram.types
 from aiogram import Router, types
 from aiogram.filters import Command, CommandObject
 
@@ -6,8 +5,6 @@ from app.database.user.models import User
 
 router = Router()
 
-
-# TODO: Доделать фильтр к этому
 
 @router.message(Command("ban"))
 async def ban_cmd(message: types.Message, command: CommandObject):
